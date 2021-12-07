@@ -1,0 +1,7 @@
+FROM centos
+RUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+RUN dnf update -y
+RUN dnf -y install htop iftop iotop
+RUN dnf -y install vim tree cscope
+RUN dnf -y install gdb
+RUN dnf -y group install "Development Tools"
