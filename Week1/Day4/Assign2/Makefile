@@ -1,4 +1,4 @@
-TARGET_EXEC ?= array_vs_vector
+TARGET_EXEC ?= truth_table
 
 CPP_COMPILER ?= clang++
 
