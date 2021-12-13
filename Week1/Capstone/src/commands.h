@@ -10,6 +10,7 @@ namespace bankcli
 	void search_name();
 	void new_account();
 	void close_account();
+	void help();
 
 	/**
 	 * This is only here so I can expose functionality to tests

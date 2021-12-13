@@ -14,6 +14,7 @@
 #endif
 
 // Ideally we'd pull this from a database or server, but for now we'll just embed it into the application.
+// Additionally, for anyone testing this, the password is "Adm1nP4ssw0rd!", without the quotation marks.
 static const char* administrator_pass = "11c32bbe6d998b554bf8be682d9b0a56a1d122003f7804b76b16c2dd82613789";
 
 void normalize_string(std::string& s)
@@ -168,6 +169,8 @@ int main(int argc, char** argv)
 			bankcli::new_account();
 		else if (command == "close account")
 			bankcli::close_account();
+		else if (command == "help")
+			bankcli::help();
 		else
 			printf("Invalid command.\n");
 	}

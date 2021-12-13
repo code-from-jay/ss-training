@@ -224,3 +224,14 @@ void bankcli::close_account()
 		std::cout << "Account closed" << std::endl;
 	}
 }
+
+void bankcli::help()
+{
+	std::cout << "Valid Commands:\n"
+		<< "\tshow accounts - List all accounts\n"
+		<< "\tdisplay account - Shows info on a specific account\n"
+		<< "\tsearch name - Searches for an account by customer name\n"
+		<< "\tnew account - Register a new account\n"
+		<< "\tclose account - Closes an account\n"
+		<< "\thelp - Display this message\n";
+}
