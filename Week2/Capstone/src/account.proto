@@ -1,0 +1,26 @@
+syntax = "proto3";
+package bankcli;
+
+message Account {
+	string name = 1;
+	string ssn = 2;
+	uint32 id = 3;
+	uint64 creation_date = 4;
+	uint64 balance = 5;
+
+	enum TransactionType {
+		DEBIT = 0;
+		CREDIT = 1;
+	}
+
+	message Transaction {
+		TransactionType type = 1;
+		uint64 amount = 2;
+	}
+
+	repeated Transaction transactions = 6;
+}
+
+message AccountBook {
+	repeated Account accounts = 1;
+}
