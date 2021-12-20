@@ -7,6 +7,7 @@
 #include <sstream>
 #include <iomanip>
 #include <iostream>
+#include <fstream>
 #include <utility>
 #include <ctime>
 #include <cmath>
@@ -15,31 +16,6 @@
 #include "rapidfuzz/utils.hpp"
 
 typedef std::chrono::system_clock sc;
-
-/*std::tm tm =
-{
-	.tm_sec = 0,
-	.tm_min = 0,
-	.tm_hour = 0,
-	.tm_mday = 12,
-	.tm_mon = 11,
-	.tm_year = 2021 - 1900,
-	.tm_isdst = -1,
-};
-auto tp = sc::from_time_t(std::mktime(&tm));
-
-std::vector<bankcli::account> bankcli::__internal__::accounts
-{
-	{ .name = "Jonathan Joestar", .ssn = "104041868", .creation_date = tp, .account_number = 1 },
-	{ .name = "Joseph Joestar", .ssn = "109271920", .creation_date = tp, .account_number = 2 },
-	{ .name = "Jotaro Kujo", .ssn = "101011970", .creation_date = tp, .account_number = 3 },
-	{ .name = "Josuke Higashikata", .ssn = "116231983", .creation_date = tp, .account_number = 4 },
-	{ .name = "Giorno Giovanna", .ssn = "104161985", .creation_date = tp, .account_number = 5 },
-	{ .name = "Jolyne Cujoh", .ssn = "219581745", .creation_date = tp, .account_number = 6 }
-};
-
-using namespace bankcli::__internal__;*/
-
 static unsigned int counter = 1;
 
 uint64_t encode_balance(std::string balance)
@@ -176,6 +152,16 @@ void add_transaction(bankcli::Account& acc)
 		acc.set_balance(acc.balance() + amount);
 	}
 
+	{
+		std::time_t now = std::time(0);
+		std::fstream logFile("bank.log", std::ios::app);
+		logFile << "[" << std::put_time(std::localtime(&now), "%c %Z") << "] "
+			<< acc.name() << " (***-**-" << acc.ssn().substr(5) << "|#" << acc.id() << ") made a new "
+			<< (type == bankcli::Account::DEBIT ? "DEBIT" : "CREDIT") << " transaction of "
+			<< decode_balance(amount) << " making their balance " 
+			<< decode_balance(acc.balance()) << ".\n";
+	}
+
 	bankcli::Account_Transaction* transaction = acc.add_transactions();
 	transaction->set_type(type);
 	transaction->set_amount(amount);
@@ -309,6 +295,13 @@ void bankcli::new_account(bankcli::AccountBook& account_book)
 		acc->set_creation_date(std::time(0));
 		acc->set_id(counter++);
 
+		{
+			std::time_t now = std::time(0);
+			std::fstream logFile("bank.log", std::ios::app);
+			logFile << "[" << std::put_time(std::localtime(&now), "%c %Z") << "] "
+				<< acc->name() << " (***-**-" << acc->ssn().substr(5) << ") opened a new account with id '" << acc->id() << "'.\n";
+		}
+
 		validated = true;
 		std::cout << "Account {" << acc->id() << "} created sucessfully!\n";
 	}
@@ -346,6 +339,13 @@ void bankcli::close_account(bankcli::AccountBook& account_book)
 	std::string response = simplify(bankcli::prompt("Are you sure you want to close this account? Yes/No> "));
 	if (response == "yes" || response == "y")
 	{
+		{
+			const auto& acc = *it;
+			std::time_t now = std::time(0);
+			std::fstream logFile("bank.log", std::ios::app);
+			logFile << "[" << std::put_time(std::localtime(&now), "%c %Z") << "] "
+				<< acc.name() << " (***-**-" << acc.ssn().substr(5) << ") closed account '" << acc.id() << "'.\n";
+		}
 		accounts->erase(it);
 		std::cout << "Account closed" << std::endl;
 	}
