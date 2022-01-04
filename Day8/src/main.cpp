@@ -15,17 +15,7 @@ operation operation_functions[3] =
 
 int compute(int arg1, int arg2, unsigned char funcmask)
 {
-	switch (funcmask)
-	{
-		case ADD_OP:
-			return operation_functions[0](arg1, arg2);
-		case SUB_OP:
-			return operation_functions[1](arg1, arg2);
-		case MUL_OP:
-			return operation_functions[2](arg1, arg2);
-		default:
-			return 0;
-	}
+	return operation_functions[funcmask >> 1](arg1, arg2);
 }
 
 int main(int argc, char** argv)
