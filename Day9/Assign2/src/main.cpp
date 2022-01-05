@@ -23,7 +23,7 @@ struct Student
 	std::string studentId;
 	int score;
 
-	static bool comparator(Student x, Student y)
+	static bool comparator(const Student& x, const Student& y)
 	{
 		return x.score < y.score;
 	}
