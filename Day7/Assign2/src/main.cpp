@@ -17,7 +17,7 @@ int fib_index_less_than_N(int N)
 }
 
 
-int main(int argc, char** argv)
+int main(void)
 {
 	int index = fib_index_less_than_N(INT_MAX);
 	std::cout << "The largest Fibonacci number that fits in a 32-bit int is index "

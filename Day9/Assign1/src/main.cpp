@@ -15,7 +15,7 @@ public:
 	}
 };
 
-int main(int argc, char** argv)
+int main(void)
 {
 	// Set up a random number gen that's seeded by the current time
 	auto now = sys_clock::now().time_since_epoch().count();

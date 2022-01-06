@@ -87,7 +87,7 @@ void dot_product(int (&matrix1)[rows1][cols1], int (&matrix2)[rows2][cols2], int
 	}
 }
 
-int main(int argc, char** argv)
+int main(void)
 {
 	/** TODO(Jordan):
 	 * Find some way to generate these sizes randomly

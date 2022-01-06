@@ -4,7 +4,6 @@
 
 class Person
 {
-	int index;	
 public:
 	std::string name;
 	int count;
@@ -52,7 +51,7 @@ private:
 // Not allowed to initialize this inside of the class :y
 Person* Person::persons[10] = {};
 
-int main(int argc, char** argv)
+int main(void)
 {
 	std::string names[5] = { "bob", "james", "janet", "bob", "stella" };
 

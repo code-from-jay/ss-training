@@ -17,7 +17,7 @@ typedef union
 	int i;
 } mixed_types;
 
-int main(int argc, char** argv)
+int main(void)
 {
 	mixed_types arr[4] = { { .i = 20 }, { .f = 2.12f },  { .i = 9 }, { .f = 3.14f } };
 	

@@ -14,7 +14,7 @@ bool is_power_of_2(int val)
 	return powered == val;
 }
 
-int main(int argc, char** argv)
+int main(void)
 {
 	int val;
 	std::cout << "Enter a value to check: ";

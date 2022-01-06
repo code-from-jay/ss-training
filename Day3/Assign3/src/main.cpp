@@ -7,7 +7,7 @@ struct Test
 	int extra_value;
 };
 
-int main(int argc, char** argv)
+int main(void)
 {
 	int big_arr[4] = { 1, 2, 3, 4 };
 

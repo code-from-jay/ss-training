@@ -1,6 +1,6 @@
 #include <cstdio>
 
-void fib_array(int* array, size_t size, int iteration = 0)
+void fib_array(int* array, size_t size, size_t iteration = 0)
 {
 	if (iteration == size)
 		return;
@@ -14,7 +14,7 @@ void fib_array(int* array, size_t size, int iteration = 0)
 	fib_array(array, size, iteration + 1);
 }
 
-int main(int argc, char** argv)
+int main(void)
 {
 	int arr[50] = {};
 	fib_array(arr, 50);

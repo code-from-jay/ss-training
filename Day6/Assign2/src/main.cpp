@@ -13,7 +13,7 @@ struct Test
 	}
 };
 
-int main(int argc, char** argv)
+int main(void)
 {
 	const Test a{};
 	Test b{};

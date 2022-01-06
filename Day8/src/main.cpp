@@ -18,7 +18,7 @@ int compute(int arg1, int arg2, unsigned char funcmask)
 	return operation_functions[funcmask >> 1](arg1, arg2);
 }
 
-int main(int argc, char** argv)
+int main(void)
 {
 	assert(compute(9, 10, ADD_OP) == 19);
 	assert(compute(4, 10, SUB_OP) == -6);

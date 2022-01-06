@@ -28,7 +28,7 @@ int count_digits(const std::string_view& str)
 	return count;
 }
 
-int main(int argc, char** argv)
+int main(void)
 {
 	std::string decimal;
 	std::cin >> decimal;

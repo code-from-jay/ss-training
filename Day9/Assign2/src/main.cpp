@@ -92,7 +92,7 @@ private:
 	}
 };
 
-int main(int argc, char** argv)
+int main(void)
 {
 	std::vector<Student> students =
 	{

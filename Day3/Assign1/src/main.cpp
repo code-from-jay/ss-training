@@ -3,7 +3,7 @@
 
 #define ARR_SIZE 3
 
-int main(int argc, char** argv)
+int main(void)
 {
 	// Initialize the array of floats with simple values
 	float arr[ARR_SIZE] = { 1.57f, 3.14f, 6.28f };

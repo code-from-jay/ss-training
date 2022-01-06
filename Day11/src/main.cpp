@@ -71,7 +71,14 @@ public:
 
 		for (endpos = startpos+1; endpos < len && sentence[endpos] != ' '; ++endpos);
 
-		return std::move(std::string(sentence + startpos, endpos - startpos));
+		/**
+		 * Learned something new when I was adding warning/optimization flags,
+		 * turns out the C++ compiler is smart enough to automatically
+		 * move/copy/construct temporary variables to the return location.
+		 *
+		 * Thus making my explicit std::move unneeded.
+		 */
+		return std::string(sentence + startpos, endpos - startpos);
 	}
 
 	void replace(char* sent)
@@ -114,7 +121,7 @@ private:
 	}
 };
 
-int main(int argc, char** argv)
+int main(void)
 {
 	Sentence a{"Quick brown fox jumps over the lazy dog."};
 	assert(a.num_words() == 8);
