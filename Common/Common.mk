@@ -32,7 +32,7 @@ CPP_COMPILER ?= clang++
 
 $(BUILD_DIR)/$(TARGET_EXEC): CXXFLAGS+=$(if $(RELEASE),$(RELEASE_FLAGS),$(DEBUG_FLAGS))
 $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
-	$(CPP_COMPILER) $< -o $@ $(LDFLAGS)
+	$(CPP_COMPILER) $(OBJS) -o $@ $(LDFLAGS)
 
 # C++ sources
 $(BUILD_DIR)/%.cpp.o: %.cpp
