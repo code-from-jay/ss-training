@@ -18,7 +18,7 @@ public:
 	virtual double area() = 0;
 };
 
-class Polygon : Shape2D
+class Polygon : public Shape2D
 {
 protected:
 	std::vector<Point> _vertices;
