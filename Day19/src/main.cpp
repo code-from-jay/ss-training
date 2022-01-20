@@ -1,6 +1,7 @@
 #include <utility>
 #include <vector>
 #include <cmath>
+#include <cstdio>
 #include <chrono>
 #include <iostream>
 #include <fstream>
@@ -81,8 +82,8 @@ struct Body
 
 	Body(int index, int totalBodies, Vec2 position) :
 		ind(index), mass(initial_mass), position(position),
-		velocity(Vec2{}), totalForce(Vec2{}), acceleration(Vec2{}),
-		forceVector(totalBodies)
+		velocity(Vec2{}), forceVector(totalBodies),
+		totalForce(Vec2{}), acceleration(Vec2{})
 	{}
 };
 
@@ -125,7 +126,7 @@ int main()
 		bodies.reserve(bodyCount);
 
 		for (int i = 0; i < bodyCount; ++i)
-			bodies[i] = Body{i, bodyCount, Vec2{(double)(bodyCount * i), (double)(bodyCount * i * 2)}};
+			bodies.emplace_back(i, bodyCount, Vec2{(double)(bodyCount * i), (double)(bodyCount * i * 2)});
 
 		auto start = high_resolution_clock::now();
 		for (int step = 0; step < k; ++step)
