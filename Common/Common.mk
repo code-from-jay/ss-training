@@ -18,7 +18,7 @@ INC_DIRS := $(shell find $(SOURCE_DIRS) $(INCLUDE_DIRS) -type d)
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
 CXXFLAGS := $(INC_FLAGS) $(CXXFLAGS)
-CPPFLAGS := $(CXXFLAGS) -std=c++17
+CPPFLAGS := $(CXXFLAGS) $(or $(CPPFLAGS),-std=c++17)
 CFLAGS   := $(CFLAGS) -std=c17
 
 DEBUG_FLAGS   := -g3 -Og
